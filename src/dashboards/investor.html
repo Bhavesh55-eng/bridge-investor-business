@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Dashboard - Bridge Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h2>Bridge</h2>
+            </div>
+            <div class="nav-links">
+                <span id="userName">Welcome, Investor</span>
+                <button onclick="authManager.logout()" class="btn btn-outline">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h3>Investor Dashboard</h3>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="active" data-section="overview">Overview</a></li>
+                    <li><a href="#browse-proposals" data-section="browse-proposals">Browse Proposals</a></li>
+                    <li><a href="#post-opportunity" data-section="post-opportunity">Post Investment Opportunity</a></li>
+                    <li><a href="#my-investments" data-section="my-investments">My Investments</a></li>
+                    <li><a href="#watchlist" data-section="watchlist">Watchlist</a></li>
+                    <li><a href="#profile" data-section="profile">My Profile</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div id="overview" class="content-section active">
+                <h2>Investment Overview</h2>
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="stat-card card">
+                        <h3>₹25,00,000</h3>
+                        <p>Total Investment Budget</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>8</h3>
+                        <p>Active Investments</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>15</h3>
+                        <p>Proposals Reviewed</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Market Insights</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Technology sector showing 23% growth this quarter</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Healthcare startups receiving increased funding</li>
+                        <li style="padding: 0.5rem 0;">Green energy investments up by 40%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Browse Proposals Section -->
+            <div id="browse-proposals" class="content-section">
+                <h2>Browse Business Proposals</h2>
+                
+                <!-- Filters -->
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4>Filters</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="technology">Technology</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                        
+                        <select id="fundingFilter">
+                            <option value="">Funding Range</option>
+                            <option value="0-500000">₹0 - ₹5L</option>
+                            <option value="500000-2000000">₹5L - ₹20L</option>
+                            <option value="2000000-10000000">₹20L - ₹1Cr</option>
+                            <option value="10000000+">₹1Cr+</option>
+                        </select>
+                        
+                        <select id="stageFilter">
+                            <option value="">All Stages</option>
+                            <option value="idea">Idea Stage</option>
+                            <option value="prototype">Prototype</option>
+                            <option value="mvp">MVP</option>
+                            <option value="revenue">Revenue Stage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="proposalsList">
+                    <!-- Business proposals will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Post Opportunity Section -->
+            <div id="post-opportunity" class="content-section">
+                <h2>Post Investment Opportunity</h2>
+                <div class="card">
+                    <form id="opportunityForm">
+                        <div class="form-group">
+                            <label for="opportunityTitle">Investment Opportunity Title</label>
+                            <input type="text" id="opportunityTitle" name="opportunityTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investmentAmount">Investment Amount Available (₹)</label>
+                            <input type="number" id="investmentAmount" name="investmentAmount" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferredSectors">Preferred Sectors</label>
+                            <select id="preferredSectors" name="preferredSectors" multiple>
+                                <option value="technology">Technology</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="finance">Finance</option>
+                                <option value="retail">Retail</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="energy">Energy</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investmentTerms">Investment Terms & Conditions</label>
+                            <textarea id="investmentTerms" name="investmentTerms" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="expectedReturns">Expected Returns (%)</label>
+                            <input type="number" id="expectedReturns" name="expectedReturns" min="0" max="100" step="0.1">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Post Investment Opportunity</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Other sections similar structure... -->
+            <div id="my-investments" class="content-section">
+                <h2>My Investments</h2>
+                <div id="investmentsList">
+                    <!-- Investment portfolio will be loaded here -->
+                </div>
+            </div>
+
+            <div id="watchlist" class="content-section">
+                <h2>Watchlist</h2>
+                <div id="watchlistItems">
+                    <!-- Watchlist items will be loaded here -->
+                </div>
+            </div>
+
+            <div id="profile" class="content-section">
+                <h2>My Profile</h2>
+                <div class="card">
+                    <!-- Profile form similar to business dashboard -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../firebase/firebase-config.js"></script>
+    <script src="../auth/auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

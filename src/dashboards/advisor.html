@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisor Dashboard - Bridge Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h2>Bridge</h2>
+            </div>
+            <div class="nav-links">
+                <span id="userName">Welcome, Business Advisor</span>
+                <button onclick="authManager.logout()" class="btn btn-outline">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h3>Advisor Dashboard</h3>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="active" data-section="overview">Overview</a></li>
+                    <li><a href="#queries" data-section="queries">View Queries</a></li>
+                    <li><a href="#post-info" data-section="post-info">Post Information</a></li>
+                    <li><a href="#solutions" data-section="solutions">My Solutions</a></li>
+                    <li><a href="#consultations" data-section="consultations">Consultations</a></li>
+                    <li><a href="#profile" data-section="profile">My Profile</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div id="overview" class="content-section active">
+                <h2>Advisory Overview</h2>
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="stat-card card">
+                        <h3>28</h3>
+                        <p>Queries Answered</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>15</h3>
+                        <p>Active Consultations</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>4.8/5</h3>
+                        <p>Average Rating</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Queries</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">How to validate a tech startup idea? - Technology Sector</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Investment terms negotiation - Finance Query</li>
+                        <li style="padding: 0.5rem 0;">Market research strategies - Business Development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Post Information Section -->
+            <div id="post-info" class="content-section">
+                <h2>Post Advisory Information</h2>
+                <div class="card">
+                    <form id="infoForm">
+                        <div class="form-group">
+                            <label for="infoTitle">Information Title</label>
+                            <input type="text" id="infoTitle" name="infoTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="infoCategory">Category</label>
+                            <select id="infoCategory" name="infoCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="business-strategy">Business Strategy</option>
+                                <option value="financial-planning">Financial Planning</option>
+                                <option value="market-research">Market Research</option>
+                                <option value="legal-compliance">Legal & Compliance</option>
+                                <option value="technology">Technology</option>
+                                <option value="marketing">Marketing & Sales</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="infoContent">Content</label>
+                            <textarea id="infoContent" name="infoContent" rows="8" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tags">Tags (comma-separated)</label>
+                            <input type="text" id="tags" name="tags" placeholder="startup, funding, business plan">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Post Information</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- View Queries Section -->
+            <div id="queries" class="content-section">
+                <h2>Business Queries</h2>
+                <div id="queriesList">
+                    <!-- Queries will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Other sections... -->
+        </main>
+    </div>
+
+    <script src="../firebase/firebase-config.js"></script>
+    <script src="../auth/auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banker Dashboard - Bridge Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h2>Bridge</h2>
+            </div>
+            <div class="nav-links">
+                <span id="userName">Welcome, Banker</span>
+                <button onclick="authManager.logout()" class="btn btn-outline">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h3>Banker Dashboard</h3>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="active" data-section="overview">Overview</a></li>
+                    <li><a href="#loan-products" data-section="loan-products">Loan Products</a></li>
+                    <li><a href="#post-loan" data-section="post-loan">Post Loan Details</a></li>
+                    <li><a href="#applications" data-section="applications">Applications</a></li>
+                    <li><a href="#customers" data-section="customers">Customers</a></li>
+                    <li><a href="#profile" data-section="profile">My Profile</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div id="overview" class="content-section active">
+                <h2>Banking Overview</h2>
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="stat-card card">
+                        <h3>45</h3>
+                        <p>Active Loan Applications</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>₹2.5Cr</h3>
+                        <p>Loans Disbursed This Month</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>12</h3>
+                        <p>Loan Products Available</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Applications</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">New business loan application - Tech Startup (₹15L)</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Working capital loan approved - Manufacturing Co (₹25L)</li>
+                        <li style="padding: 0.5rem 0;">Equipment financing request - Healthcare Clinic (₹8L)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Post Loan Section -->
+            <div id="post-loan" class="content-section">
+                <h2>Post Loan Details</h2>
+                <div class="card">
+                    <form id="loanForm">
+                        <div class="form-group">
+                            <label for="loanType">Loan Type</label>
+                            <select id="loanType" name="loanType" required>
+                                <option value="">Select Loan Type</option>
+                                <option value="business-loan">Business Loan</option>
+                                <option value="working-capital">Working Capital Loan</option>
+                                <option value="equipment-financing">Equipment Financing</option>
+                                <option value="startup-loan">Startup Loan</option>
+                                <option value="term-loan">Term Loan</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loanAmount">Maximum Loan Amount (₹)</label>
+                            <input type="number" id="loanAmount" name="loanAmount" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interestRate">Interest Rate (% per annum)</label>
+                            <input type="number" id="interestRate" name="interestRate" min="0" max="30" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loanTenure">Loan Tenure (months)</label>
+                            <input type="number" id="loanTenure" name="loanTenure" min="1" max="360" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eligibilityCriteria">Eligibility Criteria</label>
+                            <textarea id="eligibilityCriteria" name="eligibilityCriteria" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="requiredDocuments">Required Documents</label>
+                            <textarea id="requiredDocuments" name="requiredDocuments" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="processingFee">Processing Fee (₹)</label>
+                            <input type="number" id="processingFee" name="processingFee" min="0">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Post Loan Product</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Other sections... -->
+            <div id="loan-products" class="content-section">
+                <h2>Loan Products</h2>
+                <div id="loanProductsList">
+                    <!-- Loan products will be loaded here -->
+                </div>
+            </div>
+
+            <div id="applications" class="content-section">
+                <h2>Loan Applications</h2>
+                <div id="applicationsList">
+                    <!-- Applications will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../firebase/firebase-config.js"></script>
+    <script src="../auth/auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

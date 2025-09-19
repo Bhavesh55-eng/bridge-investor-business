@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard - Bridge Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h2>Bridge</h2>
+            </div>
+            <div class="nav-links">
+                <span id="userName">Welcome, Business Person</span>
+                <button onclick="authManager.logout()" class="btn btn-outline">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h3>Business Dashboard</h3>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="active" data-section="overview">Overview</a></li>
+                    <li><a href="#my-ideas" data-section="my-ideas">My Business Ideas</a></li>
+                    <li><a href="#post-idea" data-section="post-idea">Post New Idea</a></li>
+                    <li><a href="#investor-proposals" data-section="investor-proposals">Investor Proposals</a></li>
+                    <li><a href="#categories" data-section="categories">Browse Categories</a></li>
+                    <li><a href="#profile" data-section="profile">My Profile</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div id="overview" class="content-section active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="stat-card card">
+                        <h3>5</h3>
+                        <p>Business Ideas Posted</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>12</h3>
+                        <p>Investor Views</p>
+                    </div>
+                    <div class="stat-card card">
+                        <h3>3</h3>
+                        <p>Active Proposals</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Activity</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">New investor viewed your "AI Healthcare Platform" idea</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #e5e7eb;">Investment proposal received for "Green Energy Solution"</li>
+                        <li style="padding: 0.5rem 0;">Profile updated successfully</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- My Ideas Section -->
+            <div id="my-ideas" class="content-section">
+                <h2>My Business Ideas</h2>
+                <div id="ideasList">
+                    <!-- Ideas will be loaded here -->
+                </div>
+                <button class="btn btn-primary" onclick="showSection('post-idea')">Post New Idea</button>
+            </div>
+
+            <!-- Post Idea Section -->
+            <div id="post-idea" class="content-section">
+                <h2>Post New Business Idea</h2>
+                <div class="card">
+                    <form id="ideaForm">
+                        <div class="form-group">
+                            <label for="ideaTitle">Business Idea Title</label>
+                            <input type="text" id="ideaTitle" name="ideaTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ideaCategory">Category</label>
+                            <select id="ideaCategory" name="ideaCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="technology">Technology & Software</option>
+                                <option value="healthcare">Healthcare & Biotech</option>
+                                <option value="finance">Financial Services</option>
+                                <option value="retail">Retail & E-commerce</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="energy">Energy & Environment</option>
+                                <option value="food">Food & Beverage</option>
+                                <option value="education">Education</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ideaDescription">Detailed Description</label>
+                            <textarea id="ideaDescription" name="ideaDescription" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fundingRequired">Funding Required (₹)</label>
+                            <input type="number" id="fundingRequired" name="fundingRequired" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="businessStage">Business Stage</label>
+                            <select id="businessStage" name="businessStage" required>
+                                <option value="">Select Stage</option>
+                                <option value="idea">Just an Idea</option>
+                                <option value="prototype">Prototype Ready</option>
+                                <option value="mvp">MVP Developed</option>
+                                <option value="revenue">Generating Revenue</option>
+                                <option value="growth">Growth Stage</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Post Business Idea</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Investor Proposals Section -->
+            <div id="investor-proposals" class="content-section">
+                <h2>Investor Proposals</h2>
+                <div id="proposalsList">
+                    <!-- Proposals will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div id="categories" class="content-section">
+                <h2>Business Categories</h2>
+                <div class="category-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile" class="content-section">
+                <h2>My Profile</h2>
+                <div class="card">
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="profileName">Full Name</label>
+                            <input type="text" id="profileName" name="profileName">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profileEmail">Email</label>
+                            <input type="email" id="profileEmail" name="profileEmail" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profilePhone">Phone</label>
+                            <input type="tel" id="profilePhone" name="profilePhone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profileBio">Bio</label>
+                            <textarea id="profileBio" name="profileBio" rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../firebase/firebase-config.js"></script>
+    <script src="../auth/auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
